@@ -1,0 +1,89 @@
+﻿Version=3.5
+NumberOfModules=0
+Build1=Default,anywheresoftware.b4i.example
+NumberOfFiles=1
+File1=Main.bil
+NumberOfLibraries=1
+Library1=icore
+@EndOfDesignText@
+'Code module
+#Region  Project Attributes 
+	#ApplicationLabel: MyFirstProgram
+	#Version: 1.0.0 
+	'Orientation possible values: Portrait, LandscapeLeft, LandscapeRight and PortraitUpsideDown
+	#iPhoneOrientations: Portrait, LandscapeLeft, LandscapeRight
+	#iPadOrientations: Portrait, LandscapeLeft, LandscapeRight, PortraitUpsideDown
+#End Region
+
+Sub Process_Globals
+	Public App As Application
+	Public NavControl As NavigationController
+	Private Page1 As Page
+
+	Private btnAction As Button
+	Private lblMathSign As Label
+	Private lblComments As Label
+	Private lblNumber1 As Label
+	Private lblNumber2 As Label
+	Private txfResult As TextField
+
+	Private Number1, Number2 As Int
+End Sub
+
+Private Sub Application_Start (Nav As NavigationController)
+	NavControl = Nav
+	Page1.Initialize("Page1")
+	Page1.Title = "Page 1"
+	Page1.RootPanel.Color = Colors.White
+	Page1.RootPanel.LoadLayout("Main")
+	NavControl.ShowPage(Page1)
+	
+	New
+End Sub
+
+Private Sub Page1_Resize(Width As Int, Height As Int)
+
+End Sub
+
+Private Sub Application_Active
+	
+End Sub
+
+Private Sub Application_Inactive
+	
+End Sub
+
+Private Sub Application_Background
+	
+End Sub
+
+Sub btnAction_Click
+	If btnAction.Text = "O K" Then
+		If txfResult.Text="" Then
+			Msgbox("No result entered","E R R O R")
+		Else
+			CheckResult
+		End If
+	Else
+		New
+		btnAction.Text = "O K"
+	End If
+End Sub
+
+Sub New
+	Number1 = Rnd(1, 10)				' Generates a random number between 1 and 9
+	Number2 = Rnd(1, 10)				' Generates a random number between 1 and 9
+	lblNumber1.Text = Number1		' Displays Number1 in label lblNumber1
+	lblNumber2.Text = Number2		' Displays Number2 in label lblNumber2
+	lblComments.Text = "Enter the result" & CRLF & "and click on OK"
+	txfResult.Text = ""					' Sets edtResult.Text to empty
+End Sub
+
+Sub CheckResult
+	If txfResult.Text = Number1 + Number2 Then
+		lblComments.Text = "G O O D  result" & CRLF & "Click on NEW"
+		btnAction.Text = "N E W"
+	Else
+		lblComments.Text = "W R O N G  result" & CRLF & "Enter a new result" & CRLF & "and click OK"
+	End If
+End Sub

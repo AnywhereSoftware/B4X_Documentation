@@ -1,0 +1,87 @@
+﻿Version=6.8
+NumberOfModules=0
+Build1=Default,b4a.Warnings
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~'End of default text.~\n~
+IconFile=
+NumberOfFiles=0
+NumberOfLibraries=3
+Library1=core
+Library2=sql
+Library3=stringutils
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Warnings
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+	#IgnoreWarnings: 10, 12
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+
+End Sub
+
+Sub Globals
+	Dim lblTest As Label
+	Dim n As Int
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+'	Dim w As Int
+	
+'	w = lblTest.Width
+	lblTest.Initialize("lblTest")
+'	Activity.AddView(lblTest, 10, 10, 150, 50)
+End Sub
+
+Sub Activity_Resume
+	lblTest.Text = CalcSum(10, 15)
+	lblTest.Text = Calc(10, 15, "Sub")
+	Test1(lblTest)
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+	
+End Sub
+
+Sub CalcSum(Val1 As Double, Val2 As Double) As Double
+	Dim Sum As Double
+	
+	Sum = Val1 + Val2
+	Return Sum
+	lblTest.Text = Sum
+End Sub
+
+Sub Test
+	Dim h As Int
+	
+	h = 10dip
+	lblTest.Height = h
+	lblTest.TextSize = 16dip
+End Sub
+
+Sub Calc(Val1 As Double, Val2 As Double, Operation As String) 'As Double
+	Select Operation
+	Case "Add"
+		Return (Val1 + Val2)
+	Case "Sub"
+		Return (Val1 - Val2)
+	Case "Mult"
+		Return (Val1 * Val2)
+	Case "Div"
+		Return (Val1 / Val2)
+	End Select
+End Sub
+
+Sub Test1(pnl As Panel)
+	Dim i As Int
+	
+	
+End Sub

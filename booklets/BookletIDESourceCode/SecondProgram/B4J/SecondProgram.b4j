@@ -1,0 +1,95 @@
+﻿Version=4.7
+AppType=JavaFX
+NumberOfModules=0
+Build1=Default,b4j.SecondProgram
+NumberOfFiles=1
+File1=Main.bjl
+NumberOfLibraries=3
+Library1=jcore
+Library2=jfx
+Library3=cssutils
+@EndOfDesignText@
+#Region Project Attributes 
+	#MainFormWidth: 400
+	#MainFormHeight: 600 
+#End Region
+
+Sub Process_Globals
+	Private fx As JFX
+	Private MainForm As Form
+	Private btnAction, btn0 As Button
+	Private lblComments As Label
+	Private lblMathSign As Label
+	Private lblNumber1 As Label
+	Private lblNumber2 As Label
+	Private lblResult As Label
+	Private Number1, Number2 As Int	
+End Sub
+
+Sub AppStart (Form1 As Form, Args() As String)
+	MainForm = Form1
+	MainForm.RootPane.LoadLayout("Main") 'Load the layout file.
+	MainForm.Title = "Calc Trainer"
+	MainForm.Show 
+	
+	New
+End Sub
+
+Sub btnAction_MouseClicked (EventData As MouseEvent)
+	If btnAction.Text = "O K" Then
+		If lblResult.Text="" Then
+			fx.Msgbox(Null, "No result entered", "E R R O R")
+'			lblComments.Text = "E R R O R" & CRLF & "No result entered"	
+		Else
+			CheckResult
+		End If
+	Else
+		New
+		btnAction.Text = "O K"
+		lblResult.Text = "" 
+	End If	
+End Sub
+
+Private Sub New
+	Number1 = Rnd(1, 20)			' Generates a random number between 1 and 9
+	Number2 = Rnd(1, 20)			' Generates a random number between 1 and 9
+	lblNumber1.Text = Number1		' Displays Number1 in label lblNumber1
+	lblNumber2.Text = Number2		' Displays Number2 in label lblNumber2
+	lblComments.Text = "Enter the result" & CRLF & "and click on OK"
+	CSSUtils.SetBackgroundColor(lblComments, fx.Colors.RGB(255,235,128))	' yellow color
+	lblResult.Text = ""			' Sets edtResult.Text to empty
+	btn0.Visible = False
+End Sub
+
+Private Sub CheckResult
+	If lblResult.Text = Number1 + Number2 Then
+		CSSUtils.SetBackgroundColor(lblComments, fx.Colors.RGB(128,255,128))	' light green color
+		lblComments.Text = "G O O D  result" & CRLF & "Click on NEW"
+		btnAction.Text = "N E W"
+	Else
+		CSSUtils.SetBackgroundColor(lblComments, fx.Colors.RGB(255,128,128))	' light red color
+		lblComments.Text = "W R O N G  result" & CRLF & "Enter a new result" & CRLF & "and click OK"
+	End If
+End Sub
+
+Private Sub btnEvent_MouseClicked (EventData As MouseEvent)
+	Private btnSender As Button
+	
+	btnSender = Sender
+	
+	Select btnSender.Tag
+	Case "BS"
+		If lblResult.Text.Length > 0 Then
+			lblResult.Text = lblResult.Text.SubString2(0, lblResult.Text.Length - 1)
+		End If
+	Case Else
+		lblResult.Text = lblResult.Text & btnSender.Text
+	End Select
+	
+	If lblResult.Text.Length = 0 Then
+		btn0.Visible = False
+	Else
+		btn0.Visible = True
+	End If	
+End Sub
+

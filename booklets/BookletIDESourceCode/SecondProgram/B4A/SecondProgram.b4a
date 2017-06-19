@@ -1,0 +1,107 @@
+﻿Version=6.95
+NumberOfModules=0
+Build1=Default,b4a.SecondProgram
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~
+IconFile=
+NumberOfFiles=1
+File1=Main.bal
+NumberOfLibraries=1
+Library1=core
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: SecondProgram
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+
+End Sub
+
+Sub Globals
+btn	Private btnAction, btn0 As Button
+	Private lblResult As Label
+	Private lblComments As Label
+	Private lblMathSign As Label
+	Private lblNumber1 As Label
+	Private lblNumber2 As Label
+	Private Number1, Number2 As Int
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Main")
+	New
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+	
+End Sub
+
+Sub New
+	Number1 = Rnd(1, 20)			' Generates a random number between 1 and 9
+	Number2 = Rnd(1, 20)			' Generates a random number between 1 and 9
+	lblNumber1.Text = Number1	' Displays Number1 in label lblNumber1
+	lblNumber2.Text = Number2	' Displays Number2 in label lblNumber2
+	lblComments.Text = "Enter the result" & CRLF & "and click on OK"
+	lblComments.Color = Colors.RGB(255,235,128)	' yellow color
+	lblResult.Text = ""				' Sets lblResult.Text to empty
+	btn0.Visible = False
+End Sub
+
+Sub btnAction_Click
+	If btnAction.Text = "O K" Then
+		If lblResult.Text="" Then
+			Msgbox("No result entered","E R R O R")
+		Else
+			CheckResult
+		End If
+	Else
+		New
+		btnAction.Text = "O K"
+		lblResult.Text = ""
+	End If
+End Sub
+
+Sub CheckResult
+	If lblResult.Text = Number1 + Number2 Then
+		lblComments.Text = "G O O D  result" & CRLF & "Click on NEW"
+		lblComments.Color = Colors.RGB(128,255,128)	' light green color
+		btnAction.Text = "N E W"
+	Else
+		lblComments.Text = "W R O N G  result" & CRLF & "Enter a new result" & CRLF & "and click OK"
+		lblComments.Color = Colors.RGB(255,128,128)	' light red color
+	End If
+End Sub
+
+Sub btnEvent_Click
+	Private btnSender As Button
+
+	btnSender = Sender
+	
+	Select btnSender.Tag
+	Case "BS"
+		If lblResult.Text.Length >0 Then
+			lblResult.Text = lblResult.Text.SubString2(0,lblResult.Text.Length - 1)
+		End If
+	Case Else
+		lblResult.Text = lblResult.Text & btnSender.Text
+	End Select
+
+	If lblResult.Text.Length = 0 Then
+		btn0.Visible = False
+	Else
+		btn0.Visible = True
+	End If
+End Sub
