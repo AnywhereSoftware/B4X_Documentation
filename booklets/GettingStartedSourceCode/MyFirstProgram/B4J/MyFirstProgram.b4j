@@ -1,0 +1,67 @@
+﻿Version=4.7
+AppType=JavaFX
+NumberOfModules=0
+Build1=Default,b4j.MyFirstProgram
+NumberOfFiles=1
+File1=Main.bjl
+NumberOfLibraries=2
+Library1=jcore
+Library2=jfx
+@EndOfDesignText@
+#Region Project Attributes 
+	#MainFormWidth: 400
+	#MainFormHeight: 600 
+#End Region
+
+Sub Process_Globals
+	Private fx As JFX
+	Private MainForm As Form
+	
+	Private btnAction As Button
+	Private lblComments As Label
+	Private lblMathSign As Label
+	Private lblNumber1 As Label
+	Private lblNumber2 As Label
+	Private txfResult As TextField
+	
+	Private Number1, Number2 As Int	
+End Sub
+
+Sub AppStart (Form1 As Form, Args() As String)
+	MainForm = Form1
+	MainForm.RootPane.LoadLayout("Main") 'Load the layout file.
+	MainForm.Show
+	
+	New
+End Sub
+
+Sub btnAction_MouseClicked (EventData As MouseEvent)
+	If btnAction.Text = "O K" Then
+		If txfResult.Text="" Then
+			lblComments.Text = "No result entered" & CRLF & "Enter a result" & CRLF & "and click on OK"
+		Else
+			CheckResult
+		End If
+	Else
+		New
+		btnAction.Text = "O K"
+	End If	
+End Sub
+
+Private Sub New
+	Number1 = Rnd(1, 10)			' Generates a random number between 1 and 9
+	Number2 = Rnd(1, 10)			' Generates a random number between 1 and 9
+	lblNumber1.Text = Number1		' Displays Number1 in label lblNumber1
+	lblNumber2.Text = Number2		' Displays Number2 in label lblNumber2
+	lblComments.Text = "Enter the result" & CRLF & "and click on OK"
+	txfResult.Text = ""			' Sets edtResult.Text to empty
+End Sub
+
+Private Sub CheckResult
+	If txfResult.Text = Number1 + Number2 Then
+		lblComments.Text = "G O O D  result" & CRLF & "Click on NEW"
+		btnAction.Text = "N E W"
+	Else
+		lblComments.Text = "W R O N G  result" & CRLF & "Enter a new result" & CRLF & "and click OK"
+	End If
+End Sub
