@@ -1,0 +1,34 @@
+﻿Version=1
+NumberOfModules=0
+Build1=Default,B4RDev
+NumberOfFiles=0
+NumberOfLibraries=1
+Library1=rcore
+@EndOfDesignText@
+
+#Region Project Attributes
+	#AutoFlushLogs: True
+	#CheckArrayBounds: True
+	#StackBufferSize: 300
+#End Region
+
+Sub Process_Globals
+   Public Serial1 As Serial		
+   Private pinButton As Pin	'pin for the button
+   Private pinLED13 As Pin	'pin for LED 13 on the Arduino
+End Sub
+
+Private Sub AppStart
+	Serial1.Initialize(115200)
+	Log("AppStart")
+	
+	pinLED13.Initialize(13, pinLED13.MODE_OUTPUT)
+	pinButton.Initialize(pinButton.A5, pinButton.MODE_INPUT_PULLUP) 'Using the internal pull up resistor to prevent the pin from floating.
+	pinButton.AddListener("pinButton_StateChanged")
+End Sub
+
+Sub pinButton_StateChanged (State As Boolean)
+   Log("State: ", State)
+   'state will be False when the button is clicked because of the PULLUP mode.
+   pinLED13.DigitalWrite(Not(State))
+End Sub

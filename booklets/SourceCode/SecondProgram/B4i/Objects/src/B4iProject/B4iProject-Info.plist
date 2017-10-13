@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>anywheresoftware.b4i.example.bridge</string>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleExecutable</key>
+    <string>${EXECUTABLE_NAME}</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>B4i-Bridge</string>
+	<key>CFBundleDisplayName</key>
+    <string>B4i-Bridge</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UILaunchImages</key>
+	<array>
+    <dict>
+        <key>UILaunchImageMinimumOSVersion</key>
+        <string>8.0</string>
+        <key>UILaunchImageName</key>
+        <string>Default-667h</string>
+        <key>UILaunchImageOrientation</key>
+        <string>Portrait</string>
+        <key>UILaunchImageSize</key>
+        <string>{375, 667}</string>
+    </dict>
+    <dict>
+        <key>UILaunchImageMinimumOSVersion</key>
+        <string>8.0</string>
+        <key>UILaunchImageName</key>
+        <string>Default-736h</string>
+        <key>UILaunchImageOrientation</key>
+        <string>Portrait</string>
+        <key>UILaunchImageSize</key>
+        <string>{414, 736}</string>
+    </dict>
+	  <dict>
+        <key>UILaunchImageMinimumOSVersion</key>
+        <string>7.0</string>
+        <key>UILaunchImageName</key>
+        <string>Default-568h</string>
+        <key>UILaunchImageOrientation</key>
+        <string>Portrait</string>
+        <key>UILaunchImageSize</key>
+        <string>{320, 568}</string>
+    </dict>
+	<dict>
+		<key>UILaunchImageMinimumOSVersion</key>
+		<string>7.0</string>
+		<key>UILaunchImageName</key>
+		<string>Default</string>
+		<key>UILaunchImageOrientation</key>
+		<string>Portrait</string>
+		<key>UILaunchImageSize</key>
+		<string>{320, 480}</string>
+  </dict>
+  <dict>
+	  <key>UILaunchImageMinimumOSVersion</key>
+	  <string>7.0</string>
+	  <key>UILaunchImageName</key>
+	  <string>Default-Portrait</string>
+	  <key>UILaunchImageOrientation</key>
+	  <string>Portrait</string>
+	  <key>UILaunchImageSize</key>
+	  <string>{768, 1024}</string>
+  </dict>
+	
+
+	</array>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>icon-60</string>
+				<string>icon-76</string>
+			</array>
+		</dict>
+	</dict>
+    <key>CFBundleVersion</key>
+    <string>1.0.0</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+		<string>armv7</string>
+    	
+    </array>
+    <key>UISupportedInterfaceOrientations</key>
+		<array>
+		<string>UIInterfaceOrientationPortrait</string>
+<string>UIInterfaceOrientationLandscapeLeft</string>
+<string>UIInterfaceOrientationLandscapeRight</string>
+
+		</array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+<string>UIInterfaceOrientationLandscapeLeft</string>
+<string>UIInterfaceOrientationLandscapeRight</string>
+<string>UIInterfaceOrientationPortraitUpsideDown</string>
+
+		</array>
+	<key>LSApplicationQueriesSchemes</key><array><string>b4idebug0</string><string>b4idebug1</string><string>b4idebug2</string><string>b4idebug3</string><string>b4idebug4</string><string>b4idebug5</string><string>b4idebug6</string><string>b4idebug7</string><string>b4idebug8</string><string>b4idebug9</string><string>b4idebug10</string><string>b4idebug11</string><string>b4idebug12</string><string>b4idebug13</string><string>b4idebug14</string><string>b4idebug15</string><string>b4idebug16</string><string>b4idebug17</string><string>b4idebug18</string><string>b4idebug19</string><string>b4idebug20</string><string>b4idebug21</string><string>b4idebug22</string><string>b4idebug23</string><string>b4idebug24</string><string>b4idebug25</string><string>b4idebug26</string><string>b4idebug27</string><string>b4idebug28</string><string>b4idebug29</string><string>b4idebug30</string><string>b4idebug31</string><string>b4idebug32</string><string>b4idebug33</string><string>b4idebug34</string><string>b4idebug35</string><string>b4idebug36</string><string>b4idebug37</string><string>b4idebug38</string><string>b4idebug39</string><string>b4idebug40</string><string>b4idebug41</string><string>b4idebug42</string><string>b4idebug43</string><string>b4idebug44</string></array>
+	<key>NSAppTransportSecurity</key><dict><key>NSAllowsArbitraryLoads</key><true/></dict>
+	<key>CFBundleURLTypes</key><array><dict><key>CFBundleURLSchemes</key><array><string>b4icloud</string></array></dict>
+<dict><key>CFBundleURLSchemes</key><array><string>b4ibridge</string></array></dict>
+</array>
+	<key>UIAppFonts</key><array><string>B4X_FontAwesome.otf</string><string>B4X_MaterialIcons.ttf</string></array>
+	
+</dict>
+</plist>

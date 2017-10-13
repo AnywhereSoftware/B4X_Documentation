@@ -1,0 +1,38 @@
+﻿Version=1.48
+NumberOfModules=0
+Build1=Default,B4RDev
+NumberOfFiles=0
+NumberOfLibraries=1
+Library1=rcore
+@EndOfDesignText@
+
+#Region Project Attributes
+	#AutoFlushLogs: True
+	#CheckArrayBounds: True
+	#StackBufferSize: 300
+#End Region
+
+Sub Process_Globals
+	Public Serial1 As Serial
+	Private pinButton As Pin			'pin for the button
+	Private pinLEDGreen As Pin		'pin for the green Led
+	Private LightOn = False As Boolean
+End Sub
+
+Private Sub AppStart
+	Serial1.Initialize(115200)
+
+	'Using the internal pull up resistor to prevent the pin from floating.
+	pinButton.Initialize(pinButton.A5, pinButton.MODE_INPUT_PULLUP) 
+	pinButton.AddListener("pinButton_StateChanged")
+
+	pinLEDGreen.Initialize(7, pinLEDGreen.MODE_OUTPUT)
+End Sub
+
+Private Sub pinButton_StateChanged (State As Boolean)
+	If State = False Then	'remember, False means button pressed.
+		LightOn = Not(LightOn)		
+		pinLEDGreen.DigitalWrite(LightOn)	
+	End If
+End Sub
+

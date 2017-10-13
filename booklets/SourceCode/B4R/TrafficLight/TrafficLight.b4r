@@ -1,0 +1,87 @@
+﻿Version=2.2
+NumberOfModules=0
+Build1=Default,B4RDev
+NumberOfFiles=0
+NumberOfLibraries=1
+Library1=rcore
+@EndOfDesignText@
+
+#Region Project Attributes
+	#AutoFlushLogs: True
+	#CheckArrayBounds: True
+	#StackBufferSize: 300
+#End Region
+
+Sub Process_Globals
+	Public Serial1 As Serial
+	
+	Public pinButton As Pin			'pin for the button
+	Public pinLEDGreen, pinLEDYellow, pinLEDRed As Pin 		'pins for the Leds
+	Public TimerGreenRed As Timer
+	Public LightOn = False As Boolean
+	Public LightGreen = False As Boolean
+	Private BounceTime As ULong
+	Private BounceDelay = 10 As ULong
+End Sub
+
+Private Sub AppStart
+	Serial1.Initialize(115200)
+
+	TimerGreenRed.Initialize("TimerGreenRed_Tick", 2000)
+	
+	'Using the internal pull up resistor to prevent the pin from floating.
+	pinButton.Initialize(pinButton.A5, pinButton.MODE_INPUT_PULLUP)
+	pinButton.AddListener("pinButton_StateChanged")
+
+	pinLEDGreen.Initialize(7, pinLEDGreen.MODE_OUTPUT)
+	pinLEDYellow.Initialize(8, pinLEDYellow.MODE_OUTPUT)
+	pinLEDRed.Initialize(9, pinLEDRed.MODE_OUTPUT)
+End Sub
+
+Private Sub pinButton_StateChanged (State As Boolean)
+'	Log("State: ", State)							'Log the State value
+
+	If State = False Then							'if State = False
+		If Millis - BounceTime < BounceDelay Then
+			Return
+		Else		
+			pinLEDRed.DigitalWrite(True)		'switch ON the red LED	
+'			LightOn = Not(LightOn)					'change the value of LightOn
+			BounceTime = Millis
+'			Log("Light: ", LightOn)					'Log the LightOn value
+
+			TimerGreenRed.Enabled = LightOn		'enable TimerGreenRed Timer
+			
+			If LightOn = False Then						'if LightOn = False
+				pinLEDGreen.DigitalWrite(False)	'switch OFF LED Green
+				pinLEDYellow.DigitalWrite(False)	'switch OFF LED Yellow
+				pinLEDRed.DigitalWrite(False)		'switch OFF LED Red
+			End If
+		End If
+	End If
+End Sub
+
+Private Sub TimerGreenRed_Tick
+	If LightGreen = True Then					'if LightGreen = True
+'		Log("TimerGreenRed_Tick LightYellow") 'write the Log
+		CallSubPlus("EndYellow", 500, 0)
+		pinLEDGreen.DigitalWrite(False)	'switch OFF LED Green
+		pinLEDYellow.DigitalWrite(True)	'switch ON LED Yellow
+		LightGreen = False							'set LightGreen to False
+	Else
+		Log("TimerGreenRed_Tick LightGreen") 'write the Log
+		pinLEDRed.DigitalWrite(False)		'switch OFF LED Red
+		pinLEDGreen.DigitalWrite(True)	'switch ON LED Green
+		LightGreen = True								'set LightGreen to True
+	End If
+End Sub
+
+Private Sub EndYellow(Tag As Byte)
+'	Log("TimerYellow_Tick LightRed")	'write the Log
+'	Log(" ")
+	pinLEDYellow.DigitalWrite(False)	'switch OFF LED Yellow
+	pinLEDRed.DigitalWrite(True)			'switch ON LED Red	
+End Sub
+
+
+

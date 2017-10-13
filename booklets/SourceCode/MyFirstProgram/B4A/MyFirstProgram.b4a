@@ -1,0 +1,82 @@
+﻿Version=7.28
+NumberOfModules=0
+Build1=Default,b4a.MyFirstProgram
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="19"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~
+IconFile=
+NumberOfFiles=1
+File1=Main.bal
+NumberOfLibraries=1
+Library1=core
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: MyFirstProgram
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+
+End Sub
+
+Sub Globals
+	Private btnAction As Button
+	Private edtResult As EditText
+	Private lblComments As Label
+	Private lblMathSign As Label
+	Private lblNumber1 As Label
+	Private lblNumber2 As Label
+	
+	Private Number1, Number2 As Int
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Main")
+	New
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub New
+	Number1 = Rnd(1, 10)			' Generates a random number between 1 and 9
+	Number2 = Rnd(1, 10)			' Generates a random number between 1 and 9
+	lblNumber1.Text = Number1		' Displays Number1 in label lblNumber1
+	lblNumber2.Text = Number2		' Displays Number2 in label lblNumber2
+	lblComments.Text = "Enter the result" & CRLF & "and click on OK"
+	edtResult.Text = ""			' Sets edtResult.Text to empty
+End Sub
+
+Sub btnAction_Click
+	If btnAction.Text = "O K" Then
+		If edtResult.Text = "" Then
+			Msgbox("No result entered","E R R O R")
+		Else
+			CheckResult
+		End If
+	Else
+		New
+		btnAction.Text = "O K"
+	End If
+End Sub
+
+Sub CheckResult
+	If edtResult.Text = Number1 + Number2 Then
+		lblComments.Text = "G O O D  result" & CRLF & "Click on NEW"
+		btnAction.Text = "N E W"
+	Else
+		lblComments.Text = "W R O N G  result" & CRLF & "Enter a new result" & CRLF & "and click OK"
+	End If
+End Sub
